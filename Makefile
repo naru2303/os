@@ -1,0 +1,8 @@
+
+
+
+
+HERE THE MAKEFILE WILL BE WRITTEN FOR ALL THE REP 
+
+
+INCLUDING -O -CC -CFLAGs  - S -.c -.s and so on ... 
