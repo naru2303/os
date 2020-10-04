@@ -1,0 +1,180 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x0000000008000000 0x0000000000100000 xr
+SRAM             0x0000000020000000 0x0000000000050000 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD build/st_startup.o
+LOAD build/main.o
+                0x0000000000000400                __max_heap_size = 0x400
+                0x0000000000000200                __max_stack_size = 0x200
+
+.text           0x0000000008000000      0x2a8
+ *(.isr_vector)
+ .isr_vector    0x0000000008000000      0x1ac build/st_startup.o
+                0x0000000008000000                vectors
+ *(.text)
+ .text          0x00000000080001ac       0x8c build/st_startup.o
+                0x00000000080001ac                Reset_Handler
+                0x0000000008000230                EXTI2_IRQHandler
+                0x0000000008000230                TIM8_TRG_COM_IRQHandler
+                0x0000000008000230                TIM8_CC_IRQHandler
+                0x0000000008000230                SVCall_Handler
+                0x0000000008000230                DebugMon_Handler
+                0x0000000008000230                DMA1_CH4_IRQHandler
+                0x0000000008000230                TIM1_CC_IRQHandler
+                0x0000000008000230                TSC_IRQHandler
+                0x0000000008000230                HardFault_Handler
+                0x0000000008000230                SysTick_Handler
+                0x0000000008000230                TAMP_STAMP_IRQHandler
+                0x0000000008000230                PendSV_Handler
+                0x0000000008000230                NMI_Handler
+                0x0000000008000230                CAN2_RX1_IRQHandler
+                0x0000000008000230                EXTI3_IRQHandler
+                0x0000000008000230                LPTIM2_IRQHandler
+                0x0000000008000230                DFSDM1_FLT1_IRQHandler
+                0x0000000008000230                I2C3_ER_IRQHandler
+                0x0000000008000230                DFSDM1_FLT2_IRQHandler
+                0x0000000008000230                TIM6_DACUNDER_IRQHandler
+                0x0000000008000230                EXTI0_IRQHandler
+                0x0000000008000230                I2C2_EV_IRQHandler
+                0x0000000008000230                DMA2_CH1_IRQHandler
+                0x0000000008000230                CAN1_RX0_IRQHandler
+                0x0000000008000230                FPU_IRQHandler
+                0x0000000008000230                TIM1_UP_TIM16_IRQHandler
+                0x0000000008000230                DMA2_CH7_IRQHandler
+                0x0000000008000230                UsageFault_Handler
+                0x0000000008000230                CAN2_SCE_IRQHandler
+                0x0000000008000230                ADC1_2_IRQHandler
+                0x0000000008000230                SPI1_IRQHandler
+                0x0000000008000230                USART5_IRQHandler
+                0x0000000008000230                DMA1_CH7_IRQHandler
+                0x0000000008000230                DCMI_IRQHandler
+                0x0000000008000230                CAN2_RX0_IRQHandler
+                0x0000000008000230                TIM8_UP_IRQHandler
+                0x0000000008000230                RTC_ALARM_IRQHandler
+                0x0000000008000230                SAI2_IRQHandler
+                0x0000000008000230                DFSDM1_FLT3_IRQHandler
+                0x0000000008000230                DMA1_CH6_IRQHandler
+                0x0000000008000230                USART3_IRQHandler
+                0x0000000008000230                CAN1_RX1_IRQHandler
+                0x0000000008000230                LCD_IRQHandler
+                0x0000000008000230                ADC3_IRQHandler
+                0x0000000008000230                TIM4_IRQHandler
+                0x0000000008000230                QUADSPI_IRQHandler
+                0x0000000008000230                I2C1_EV_IRQHandler
+                0x0000000008000230                DMA2_CH5_IRQHandler
+                0x0000000008000230                USART4_IRQHandler
+                0x0000000008000230                DMA1_CH3_IRQHandler
+                0x0000000008000230                TIM3_IRQHandler
+                0x0000000008000230                RCC_IRQHandler
+                0x0000000008000230                Default_Handler
+                0x0000000008000230                EXTI15_10_IRQHandler
+                0x0000000008000230                TIM7_IRQHandler
+                0x0000000008000230                SDMMC1_IRQHandler
+                0x0000000008000230                CAN2_TX_IRQHandler
+                0x0000000008000230                TIM5_IRQHandler
+                0x0000000008000230                I2C3_EV_IRQHandler
+                0x0000000008000230                EXTI9_5_IRQHandler
+                0x0000000008000230                DMA1_CH2_IRQHandler
+                0x0000000008000230                RTC_WKUP_IRQHandler
+                0x0000000008000230                PVD_PVM_IRQHandler
+                0x0000000008000230                SPI2_IRQHandler
+                0x0000000008000230                DMA1_CH1_IRQHandler
+                0x0000000008000230                MemManage_Handler
+                0x0000000008000230                CAN1_TX_IRQHandler
+                0x0000000008000230                CRS_IRQHandler
+                0x0000000008000230                EXTI4_IRQHandler
+                0x0000000008000230                RNG_IRQHandler
+                0x0000000008000230                TIM1_TRG_COM_TIM17_IRQHandler
+                0x0000000008000230                COMP_IRQHandler
+                0x0000000008000230                WWDG_IRQHandler
+                0x0000000008000230                I2C4_EV_IRQHandler
+                0x0000000008000230                LPUART1_IRQHandler
+                0x0000000008000230                TIM2_IRQHandler
+                0x0000000008000230                DMA2D_IRQHandler
+                0x0000000008000230                EXTI1_IRQHandler
+                0x0000000008000230                AES_IRQHandler
+                0x0000000008000230                USART2_IRQHandler
+                0x0000000008000230                DFSDM1_FLT0_IRQHandler
+                0x0000000008000230                I2C2_ER_IRQHandler
+                0x0000000008000230                TIM8_BRK_IRQHandler
+                0x0000000008000230                CAN1_SCE_IRQHandler
+                0x0000000008000230                FLASH_IRQHandler
+                0x0000000008000230                BusFault_Handler
+                0x0000000008000230                USART1_IRQHandler
+                0x0000000008000230                OTG_FS_IRQHandler
+                0x0000000008000230                SPI3_IRQHandler
+                0x0000000008000230                DMA2_CH6_IRQHandler
+                0x0000000008000230                DMA2_CH3_IRQHandler
+                0x0000000008000230                DMA2_CH2_IRQHandler
+                0x0000000008000230                I2C1_ER_IRQHandler
+                0x0000000008000230                FMC_IRQHandler
+                0x0000000008000230                DMA1_CH5_IRQHandler
+                0x0000000008000230                DMA2_CH4_IRQHandler
+                0x0000000008000230                SWPMI1_IRQHandler
+                0x0000000008000230                LPTIM1_IRQHandler
+                0x0000000008000230                I2C4_ER_IRQHandler
+                0x0000000008000230                SAI1_IRQHandler
+                0x0000000008000230                TIM1_BRK_TIM15_IRQHandler
+ .text          0x0000000008000238       0x70 build/main.o
+                0x0000000008000238                delay
+                0x0000000008000258                main
+ *(.rodata)
+                0x00000000080002a8                . = ALIGN (0x8)
+                0x00000000080002a8                _etext = .
+
+.glue_7         0x00000000080002a8        0x0
+ .glue_7        0x00000000080002a8        0x0 linker stubs
+
+.glue_7t        0x00000000080002a8        0x0
+ .glue_7t       0x00000000080002a8        0x0 linker stubs
+
+.vfp11_veneer   0x00000000080002a8        0x0
+ .vfp11_veneer  0x00000000080002a8        0x0 linker stubs
+
+.v4_bx          0x00000000080002a8        0x0
+ .v4_bx         0x00000000080002a8        0x0 linker stubs
+
+.iplt           0x00000000080002a8        0x0
+ .iplt          0x00000000080002a8        0x0 build/st_startup.o
+
+.rel.dyn        0x00000000080002a8        0x0
+ .rel.iplt      0x00000000080002a8        0x0 build/st_startup.o
+
+.data           0x0000000020000000        0x0 load address 0x00000000080002a8
+                0x0000000020000000                _sdata = .
+ *(.data)
+ .data          0x0000000020000000        0x0 build/st_startup.o
+ .data          0x0000000020000000        0x0 build/main.o
+                0x0000000020000000                . = ALIGN (0x8)
+                0x0000000020000000                _edata = .
+
+.igot.plt       0x0000000020000000        0x0 load address 0x00000000080002a8
+ .igot.plt      0x0000000020000000        0x0 build/st_startup.o
+
+.bss            0x0000000020000000        0x0 load address 0x00000000080002a8
+                0x0000000020000000                _sbss = .
+ *(.bss)
+ .bss           0x0000000020000000        0x0 build/st_startup.o
+ .bss           0x0000000020000000        0x0 build/main.o
+ *(COMMON)
+                0x0000000020000000                . = ALIGN (0x8)
+                0x0000000020000000                _ebss = .
+OUTPUT(build/main.elf elf32-littlearm)
+
+.comment        0x0000000000000000       0x31
+ .comment       0x0000000000000000       0x31 build/st_startup.o
+                                         0x32 (size before relaxing)
+ .comment       0x0000000000000031       0x32 build/main.o
+
+.ARM.attributes
+                0x0000000000000000       0x33
+ .ARM.attributes
+                0x0000000000000000       0x33 build/st_startup.o
+ .ARM.attributes
+                0x0000000000000033       0x33 build/main.o

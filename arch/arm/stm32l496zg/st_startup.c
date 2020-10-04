@@ -230,15 +230,15 @@ void Reset_Handler(void)
     uint32_t size = (uint32_t)&_edata - (uint32_t)&_sdata; /*< Length of data section */
     uint8_t *pDst = (uint8_t*)&_sdata; /*< SRAM */
     uint8_t *pSrc = (uint8_t*)&_etext; /*< Flash */
-
-    for(uint32_t i = 0; i < size; i++)
+    uint32_t i;
+    for(i = 0; i < size; i++)
     {
         *pDst++ = *pSrc++; /*< Copy over Flash to SRAM */
     }
 
     size = (uint32_t)&_ebss - (uint32_t)&_sbss; /*< Length of bss section */
     pDst = (uint8_t*)&_sbss; 
-    for(uint32_t i; i < size; i++)
+    for(i = 0; i < size; i++)
     {
         *pDst++ = 0; /*< Set bss section to NULL */
     }
