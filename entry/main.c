@@ -1,6 +1,8 @@
 #include <stdint.h>
-#include "stm32l4xx.h"
-
+#include "include/stm32l4xx.h"
+#include "include/os-include/stm32regmap.h"
+#include "include/os-include/sprint.h"
+#include "include/os-include/bit.h"
 void initPeriph(void);
 void delay(uint32_t time);
 
@@ -17,17 +19,25 @@ void delay(uint32_t time)
     }
 }
 
+
+
 int main(void)
 {
     RCC->AHB2ENR = (1<<1); /*< Enable GPIOB Clock */
-    GPIOB->MODER = (0x01 << 14); /*< Set PB7 as output */
-    GPIOB->ODR &= ~(1<<7); /*< Set PB7 to 0 */
+
+    OS_PIOB->MODER = bit(14) ; 
+    OS_PIOB->ODR &= ~bit(7)  ; 
+   // GPIOB->MODER = (0x01 << 14); /*< Set PB7 as output */
+  //  GPIOB->ODR &= ~(1<<7); /*< Set PB7 to 0 */
     while(1)
     {
+
         delay(500000);
-        GPIOB->ODR |= (1<<7);
+      //  GPIOB->ODR |= (1<<7);
+        OS_PIOB->ODR |= bit(7)  ; 
         delay(500000);
-        GPIOB->ODR &= ~(1<<7);
+        OS_PIOB->ODR &= ~bit(7) ;
+        //GPIOB->ODR &= ~(1<<7);
     }
     
 }

@@ -9,7 +9,9 @@ SRAM             0x0000000020000000 0x0000000000050000 xrw
 Linker script and memory map
 
 LOAD build/st_startup.o
+LOAD build/print.o
 LOAD build/main.o
+LOAD build/sprint.o
                 0x0000000000000400                __max_heap_size = 0x400
                 0x0000000000000200                __max_stack_size = 0x200
 
@@ -121,9 +123,11 @@ LOAD build/main.o
                 0x0000000008000230                I2C4_ER_IRQHandler
                 0x0000000008000230                SAI1_IRQHandler
                 0x0000000008000230                TIM1_BRK_TIM15_IRQHandler
+ .text          0x0000000008000238        0x0 build/print.o
  .text          0x0000000008000238       0x70 build/main.o
                 0x0000000008000238                delay
                 0x0000000008000258                main
+ .text          0x00000000080002a8        0x0 build/sprint.o
  *(.rodata)
                 0x00000000080002a8                . = ALIGN (0x8)
                 0x00000000080002a8                _etext = .
@@ -150,7 +154,9 @@ LOAD build/main.o
                 0x0000000020000000                _sdata = .
  *(.data)
  .data          0x0000000020000000        0x0 build/st_startup.o
+ .data          0x0000000020000000        0x0 build/print.o
  .data          0x0000000020000000        0x0 build/main.o
+ .data          0x0000000020000000        0x0 build/sprint.o
                 0x0000000020000000                . = ALIGN (0x8)
                 0x0000000020000000                _edata = .
 
@@ -161,20 +167,29 @@ LOAD build/main.o
                 0x0000000020000000                _sbss = .
  *(.bss)
  .bss           0x0000000020000000        0x0 build/st_startup.o
+ .bss           0x0000000020000000        0x0 build/print.o
  .bss           0x0000000020000000        0x0 build/main.o
+ .bss           0x0000000020000000        0x0 build/sprint.o
  *(COMMON)
                 0x0000000020000000                . = ALIGN (0x8)
                 0x0000000020000000                _ebss = .
 OUTPUT(build/main.elf elf32-littlearm)
+LOAD linker stubs
 
-.comment        0x0000000000000000       0x31
- .comment       0x0000000000000000       0x31 build/st_startup.o
-                                         0x32 (size before relaxing)
- .comment       0x0000000000000031       0x32 build/main.o
+.comment        0x0000000000000000       0x4e
+ .comment       0x0000000000000000       0x4e build/st_startup.o
+                                         0x4f (size before relaxing)
+ .comment       0x000000000000004e       0x4f build/print.o
+ .comment       0x000000000000004e       0x4f build/main.o
+ .comment       0x000000000000004e       0x4f build/sprint.o
 
 .ARM.attributes
-                0x0000000000000000       0x33
+                0x0000000000000000       0x2e
  .ARM.attributes
-                0x0000000000000000       0x33 build/st_startup.o
+                0x0000000000000000       0x2e build/st_startup.o
  .ARM.attributes
-                0x0000000000000033       0x33 build/main.o
+                0x000000000000002e       0x33 build/print.o
+ .ARM.attributes
+                0x0000000000000061       0x2e build/main.o
+ .ARM.attributes
+                0x000000000000008f       0x33 build/sprint.o

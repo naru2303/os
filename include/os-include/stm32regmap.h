@@ -24,14 +24,14 @@ _w u32 BRR ;
 _rw u32 ASCR ; 
 }gpio_t; 
 
-#define GPIOA ((gpio_t*) 0x48000000) 
-#define GPIOB ((gpio_t*) 0x48000400)
-#define GPIOC ((gpio_t*) 0x48000800) 
-#define GPIOD ((gpio_t*) 0x48000C00)
-#define GPIOE ((gpio_t*) 0x48001000) 
-#define GPIOF ((gpio_t*) 0x48001400)
-#define GPIOG ((gpio_t*) 0x48001800) 
-#define GPIOH ((gpio_t*) 0x48001C00) 
+#define OS_PIOA ((gpio_t*) 0x48000000) 
+#define OS_PIOB ((gpio_t*) 0x48000400)
+#define OS_PIOC ((gpio_t*) 0x48000800) 
+#define OS_PIOD ((gpio_t*) 0x48000C00)
+#define OS_PIOE ((gpio_t*) 0x48001000) 
+#define OS_PIOF ((gpio_t*) 0x48001400)
+#define OS_PIOG ((gpio_t*) 0x48001800) 
+#define OS_PIOH ((gpio_t*) 0x48001C00) 
 
 
 typedef struct {
@@ -53,6 +53,11 @@ typedef struct {
 }usart_t ; 
  
 
+#define OS_USART_1 ((usart_t*) 0x000000D4) 
+#define OS_USART_2 ((usart_t*) 0x000000D8)
+#define OS_USART_3 ((usart_t*) 0x000000DC) 
+
+//TODO Add all other regs .
 
 
 

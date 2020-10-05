@@ -10,7 +10,7 @@ extern uint32_t _etext, _sdata, _edata, _sbss, _ebss;
 
 
 void Reset_Handler(void);
-
+int main(void) ; 
 /*< All handlers below are set to go to the Default_Handler(alias) and set to 
 *   a weak attribute so these can be overwritten if needed */
 void NMI_Handler                    (void) __attribute__ ((weak, alias("Default_Handler"))); 

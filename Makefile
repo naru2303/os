@@ -1,6 +1,6 @@
 # Source directories seperate by space
 # Ex: ./ src1/ src2
-SRCDIR = ./ arch/arm/stm32l496zg/ entry/
+SRCDIR = ./ arch/arm/stm32l496zg/ entry/ lib/ 
 # Directory where object files will go
 OBJDIR = build/
 # Directory where binary files will go
@@ -8,7 +8,7 @@ BINDIR = build/
 # Map file directory
 MAPDIR = build/
 # Include directory
-INCDIR = lib/
+INCDIR = ./ include/os-include/
 # Linker script directory
 LINKDIR = arch/arm/stm32l496zg
 # Name of output file
@@ -25,6 +25,7 @@ VPATH = $(SRCDIR)
 
 # Compilation flags
 CFLAGS= -c -mcpu=$(MACH) -mthumb -std=gnu11 -Wall -o0
+
 LDFLAGS= -nostdlib -T $(LINKDIR)/st_ls.ld -Wl,-Map=$(MAPDIR)/main.map
 
 $(OBJDIR)%.o : %.c
