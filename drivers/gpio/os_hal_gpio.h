@@ -20,6 +20,27 @@ typedef enum
 
 typedef enum
 {
+    GPIO_AF_0,
+    GPIO_AF_1,
+    GPIO_AF_2,
+    GPIO_AF_3,
+    GPIO_AF_4,
+    GPIO_AF_5,
+    GPIO_AF_6,
+    GPIO_AF_7,
+    GPIO_AF_8,
+    GPIO_AF_9,
+    GPIO_AF_10,
+    GPIO_AF_11,
+    GPIO_AF_12,
+    GPIO_AF_13,
+    GPIO_AF_14,
+    GPIO_AF_15,
+    NONE
+}GpioAF_t;
+
+typedef enum
+{
     GPIO_PIN_0 = (1<<0),  /*< 0x0000 0000 */
     GPIO_PIN_1 = (1<<1),  /*< 0x0000 0001 */
     GPIO_PIN_2 = (1<<2),  /*< 0x0000 0002 */
@@ -68,11 +89,11 @@ typedef enum
 typedef struct
 {
     GpioPortNumber_t    Port;
+    GpioPinNumber_t     Pin;
     GpioPinMode_t       Mode;
+    GpioAF_t            AF;
     GpioPinSpeed_t      Speed;
     GpioPinPupdr_t      Pupdr;
-    GpioPinNumber_t     Pin;
-
 }GpioConfig_t;
 
 /*< Function prototypes */

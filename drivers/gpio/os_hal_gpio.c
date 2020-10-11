@@ -4,9 +4,11 @@
  *  @brief Configuartion table with list of all GPIO's to configure
  */
 const GpioConfig_t Pins_To_Configure[] = {
-    {.Port = GPIO_PORT_B, .Mode = GPIO_MODE_OUTPUT, .Speed = GPIO_SPEED_LOW, .Pupdr = GPIO_PUPDR_PDN, .Pin = GPIO_PIN_7}, /*< Led 2 */
-    {.Port = GPIO_PORT_C, .Mode = GPIO_MODE_OUTPUT, .Speed = GPIO_SPEED_LOW, .Pupdr = GPIO_PUPDR_PDN, .Pin = GPIO_PIN_7}, /*< Led 1 */
-    {.Port = GPIO_PORT_B, .Mode = GPIO_MODE_OUTPUT, .Speed = GPIO_SPEED_LOW, .Pupdr = GPIO_PUPDR_PDN, .Pin = GPIO_PIN_14} /*< Led 3 */
+    {.Port = GPIO_PORT_B, .Pin = GPIO_PIN_7, .Mode = GPIO_MODE_OUTPUT, .AF = NONE, .Speed = GPIO_SPEED_LOW, .Pupdr = GPIO_PUPDR_PDN}, /*< Led 2 */
+    {.Port = GPIO_PORT_C, .Pin = GPIO_PIN_7, .Mode = GPIO_MODE_OUTPUT, .AF = NONE, .Speed = GPIO_SPEED_LOW, .Pupdr = GPIO_PUPDR_PDN}, /*< Led 1 */
+    {.Port = GPIO_PORT_B, .Pin = GPIO_PIN_14, .Mode = GPIO_MODE_OUTPUT, .AF = NONE, .Speed = GPIO_SPEED_LOW, .Pupdr = GPIO_PUPDR_PDN},/*< Led 3 */
+    {.Port = GPIO_PORT_A, .Pin = GPIO_PIN_2, .Mode = GPIO_MODE_AF, .AF = GPIO_AF_7, .Speed = GPIO_SPEED_HIGH, .Pupdr = GPIO_PUPDR_NONE}, /*< Usart 2 TX */
+    {.Port = GPIO_PORT_A, .Pin = GPIO_PIN_3, .Mode = GPIO_MODE_AF, .AF = GPIO_AF_7, .Speed = GPIO_SPEED_VERYHIGH, .Pupdr = GPIO_PUPDR_NONE}  /*< Usart 2 RX */
 };
 
 /**
@@ -37,6 +39,19 @@ void Gpio_Config(const GpioConfig_t * Config)
     /*< Clear Pupdr register then set it */
     GPIO->PUPDR &= ~(0x3 << (Position*2)); /*< Clear 2 pupdr bits */
     GPIO->PUPDR |= (Config->Pupdr << (Position*2)); /*< Set Pull up/Pulldown */
+
+    /*< Set Alternate Function Mapping */
+    if(Config->AF != NONE)
+    {
+        if(Position <= 7)
+        {
+            GPIO->AFR[0] |= (Config->AF << Position*4);
+        }
+        else
+        {
+            GPIO->AFR[1] |= (Config->AF << (Position-8)*4);
+        }
+    }
 
     /*< Clear the ODR bit related to pin */
     GPIO->ODR &= ~(1 << Position);

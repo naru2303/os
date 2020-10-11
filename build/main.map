@@ -13,10 +13,11 @@ LOAD build/print.o
 LOAD build/main.o
 LOAD build/sprint.o
 LOAD build/os_hal_gpio.o
+LOAD build/os_hal_uart.o
                 0x0000000000000400                __max_heap_size = 0x400
                 0x0000000000000200                __max_stack_size = 0x200
 
-.text           0x0000000008000000      0xb00
+.text           0x0000000008000000      0xc40
  *(.isr_vector)
  .isr_vector    0x0000000008000000      0x1ac build/st_startup.o
                 0x0000000008000000                vectors
@@ -127,47 +128,52 @@ LOAD build/os_hal_gpio.o
  .text          0x0000000008000238       0x5c build/print.o
                 0x0000000008000238                print
                 0x0000000008000274                print_char
- .text          0x0000000008000294       0xa8 build/main.o
+ .text          0x0000000008000294      0x108 build/main.o
                 0x0000000008000294                delay
-                0x00000000080002b4                main
- .text          0x000000000800033c      0x5f8 build/sprint.o
-                0x0000000008000598                vsprint
-                0x0000000008000908                sprint
- .text          0x0000000008000934      0x188 build/os_hal_gpio.o
-                0x0000000008000934                Gpio_Config
-                0x0000000008000a08                Hal_Gpio_Init
-                0x0000000008000a48                Hal_Gpio_Write
-                0x0000000008000a88                Hal_Gpio_Read
+                0x00000000080002b4                Init_Sys_Clock
+                0x0000000008000304                main
+ .text          0x000000000800039c      0x5f8 build/sprint.o
+                0x00000000080005f8                vsprint
+                0x0000000008000968                sprint
+ .text          0x0000000008000994      0x1cc build/os_hal_gpio.o
+                0x0000000008000994                Gpio_Config
+                0x0000000008000aae                Hal_Gpio_Init
+                0x0000000008000aec                Hal_Gpio_Write
+                0x0000000008000b2c                Hal_Gpio_Read
+ .text          0x0000000008000b60       0x78 build/os_hal_uart.o
+                0x0000000008000b60                Hal_Usart_init
+                0x0000000008000b84                Hal_Usart_PrintChar
+                0x0000000008000bb0                Hal_Usart_PrintStr
  *(.rodata)
- .rodata        0x0000000008000abc        0x3 build/print.o
- *fill*         0x0000000008000abf        0x1 
- .rodata        0x0000000008000ac0       0x17 build/sprint.o
- *fill*         0x0000000008000ad7        0x1 
- .rodata        0x0000000008000ad8       0x24 build/os_hal_gpio.o
-                0x0000000008000ad8                Pins_To_Configure
-                0x0000000008000b00                . = ALIGN (0x8)
- *fill*         0x0000000008000afc        0x4 
-                0x0000000008000b00                _etext = .
+ .rodata        0x0000000008000bd8        0x3 build/print.o
+ *fill*         0x0000000008000bdb        0x1 
+ .rodata        0x0000000008000bdc       0x10 build/main.o
+ .rodata        0x0000000008000bec       0x17 build/sprint.o
+ *fill*         0x0000000008000c03        0x1 
+ .rodata        0x0000000008000c04       0x3c build/os_hal_gpio.o
+                0x0000000008000c04                Pins_To_Configure
+                0x0000000008000c40                . = ALIGN (0x8)
+                0x0000000008000c40                _etext = .
 
-.glue_7         0x0000000008000b00        0x0
- .glue_7        0x0000000008000b00        0x0 linker stubs
+.glue_7         0x0000000008000c40        0x0
+ .glue_7        0x0000000008000c40        0x0 linker stubs
 
-.glue_7t        0x0000000008000b00        0x0
- .glue_7t       0x0000000008000b00        0x0 linker stubs
+.glue_7t        0x0000000008000c40        0x0
+ .glue_7t       0x0000000008000c40        0x0 linker stubs
 
-.vfp11_veneer   0x0000000008000b00        0x0
- .vfp11_veneer  0x0000000008000b00        0x0 linker stubs
+.vfp11_veneer   0x0000000008000c40        0x0
+ .vfp11_veneer  0x0000000008000c40        0x0 linker stubs
 
-.v4_bx          0x0000000008000b00        0x0
- .v4_bx         0x0000000008000b00        0x0 linker stubs
+.v4_bx          0x0000000008000c40        0x0
+ .v4_bx         0x0000000008000c40        0x0 linker stubs
 
-.iplt           0x0000000008000b00        0x0
- .iplt          0x0000000008000b00        0x0 build/st_startup.o
+.iplt           0x0000000008000c40        0x0
+ .iplt          0x0000000008000c40        0x0 build/st_startup.o
 
-.rel.dyn        0x0000000008000b00        0x0
- .rel.iplt      0x0000000008000b00        0x0 build/st_startup.o
+.rel.dyn        0x0000000008000c40        0x0
+ .rel.iplt      0x0000000008000c40        0x0 build/st_startup.o
 
-.data           0x0000000020000000        0x0 load address 0x0000000008000b00
+.data           0x0000000020000000        0x0 load address 0x0000000008000c40
                 0x0000000020000000                _sdata = .
  *(.data)
  .data          0x0000000020000000        0x0 build/st_startup.o
@@ -175,13 +181,14 @@ LOAD build/os_hal_gpio.o
  .data          0x0000000020000000        0x0 build/main.o
  .data          0x0000000020000000        0x0 build/sprint.o
  .data          0x0000000020000000        0x0 build/os_hal_gpio.o
+ .data          0x0000000020000000        0x0 build/os_hal_uart.o
                 0x0000000020000000                . = ALIGN (0x8)
                 0x0000000020000000                _edata = .
 
-.igot.plt       0x0000000020000000        0x0 load address 0x0000000008000b00
+.igot.plt       0x0000000020000000        0x0 load address 0x0000000008000c40
  .igot.plt      0x0000000020000000        0x0 build/st_startup.o
 
-.bss            0x0000000020000000       0x80 load address 0x0000000008000b00
+.bss            0x0000000020000000       0x80 load address 0x0000000008000c40
                 0x0000000020000000                _sbss = .
  *(.bss)
  .bss           0x0000000020000000        0x0 build/st_startup.o
@@ -189,26 +196,29 @@ LOAD build/os_hal_gpio.o
  .bss           0x0000000020000080        0x0 build/main.o
  .bss           0x0000000020000080        0x0 build/sprint.o
  .bss           0x0000000020000080        0x0 build/os_hal_gpio.o
+ .bss           0x0000000020000080        0x0 build/os_hal_uart.o
  *(COMMON)
                 0x0000000020000080                . = ALIGN (0x8)
                 0x0000000020000080                _ebss = .
 OUTPUT(build/main.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000      0xfa6
+.debug_info     0x0000000000000000     0x1163
  .debug_info    0x0000000000000000      0x15a build/st_startup.o
  .debug_info    0x000000000000015a      0x17c build/print.o
- .debug_info    0x00000000000002d6      0x4b1 build/main.o
- .debug_info    0x0000000000000787      0x371 build/sprint.o
- .debug_info    0x0000000000000af8      0x4ae build/os_hal_gpio.o
+ .debug_info    0x00000000000002d6      0x3cf build/main.o
+ .debug_info    0x00000000000006a5      0x371 build/sprint.o
+ .debug_info    0x0000000000000a16      0x537 build/os_hal_gpio.o
+ .debug_info    0x0000000000000f4d      0x216 build/os_hal_uart.o
 
-.debug_abbrev   0x0000000000000000      0x526
+.debug_abbrev   0x0000000000000000      0x62c
  .debug_abbrev  0x0000000000000000       0xc4 build/st_startup.o
  .debug_abbrev  0x00000000000000c4       0xe4 build/print.o
- .debug_abbrev  0x00000000000001a8       0xe8 build/main.o
- .debug_abbrev  0x0000000000000290      0x12e build/sprint.o
- .debug_abbrev  0x00000000000003be      0x168 build/os_hal_gpio.o
+ .debug_abbrev  0x00000000000001a8      0x100 build/main.o
+ .debug_abbrev  0x00000000000002a8      0x12e build/sprint.o
+ .debug_abbrev  0x00000000000003d6      0x168 build/os_hal_gpio.o
+ .debug_abbrev  0x000000000000053e       0xee build/os_hal_uart.o
 
-.debug_aranges  0x0000000000000000       0xa0
+.debug_aranges  0x0000000000000000       0xc0
  .debug_aranges
                 0x0000000000000000       0x20 build/st_startup.o
  .debug_aranges
@@ -219,25 +229,30 @@ OUTPUT(build/main.elf elf32-littlearm)
                 0x0000000000000060       0x20 build/sprint.o
  .debug_aranges
                 0x0000000000000080       0x20 build/os_hal_gpio.o
+ .debug_aranges
+                0x00000000000000a0       0x20 build/os_hal_uart.o
 
-.debug_line     0x0000000000000000      0x5b6
+.debug_line     0x0000000000000000      0x6b4
  .debug_line    0x0000000000000000       0xd8 build/st_startup.o
  .debug_line    0x00000000000000d8      0x107 build/print.o
- .debug_line    0x00000000000001df       0xff build/main.o
- .debug_line    0x00000000000002de      0x1be build/sprint.o
- .debug_line    0x000000000000049c      0x11a build/os_hal_gpio.o
+ .debug_line    0x00000000000001df      0x115 build/main.o
+ .debug_line    0x00000000000002f4      0x1be build/sprint.o
+ .debug_line    0x00000000000004b2      0x11e build/os_hal_gpio.o
+ .debug_line    0x00000000000005d0       0xe4 build/os_hal_uart.o
 
-.debug_str      0x0000000000000000      0x6cf
+.debug_str      0x0000000000000000      0x7de
  .debug_str     0x0000000000000000      0x160 build/st_startup.o
                                         0x1aa (size before relaxing)
  .debug_str     0x0000000000000160       0x58 build/print.o
                                         0x19c (size before relaxing)
- .debug_str     0x00000000000001b8      0x2bb build/main.o
-                                        0x402 (size before relaxing)
- .debug_str     0x0000000000000473       0x7c build/sprint.o
+ .debug_str     0x00000000000001b8      0x2ad build/main.o
+                                        0x3eb (size before relaxing)
+ .debug_str     0x0000000000000465       0x7c build/sprint.o
                                         0x20b (size before relaxing)
- .debug_str     0x00000000000004ef      0x1e0 build/os_hal_gpio.o
-                                        0x461 (size before relaxing)
+ .debug_str     0x00000000000004e1      0x28f build/os_hal_gpio.o
+                                        0x515 (size before relaxing)
+ .debug_str     0x0000000000000770       0x6e build/os_hal_uart.o
+                                        0x1e8 (size before relaxing)
 
 .comment        0x0000000000000000       0x31
  .comment       0x0000000000000000       0x31 build/st_startup.o
@@ -246,6 +261,7 @@ OUTPUT(build/main.elf elf32-littlearm)
  .comment       0x0000000000000031       0x32 build/main.o
  .comment       0x0000000000000031       0x32 build/sprint.o
  .comment       0x0000000000000031       0x32 build/os_hal_gpio.o
+ .comment       0x0000000000000031       0x32 build/os_hal_uart.o
 
 .ARM.attributes
                 0x0000000000000000       0x33
@@ -259,10 +275,13 @@ OUTPUT(build/main.elf elf32-littlearm)
                 0x0000000000000099       0x33 build/sprint.o
  .ARM.attributes
                 0x00000000000000cc       0x33 build/os_hal_gpio.o
+ .ARM.attributes
+                0x00000000000000ff       0x33 build/os_hal_uart.o
 
-.debug_frame    0x0000000000000000      0x2a4
+.debug_frame    0x0000000000000000      0x340
  .debug_frame   0x0000000000000000       0x4c build/st_startup.o
  .debug_frame   0x000000000000004c       0x70 build/print.o
- .debug_frame   0x00000000000000bc       0x54 build/main.o
- .debug_frame   0x0000000000000110       0xe8 build/sprint.o
- .debug_frame   0x00000000000001f8       0xac build/os_hal_gpio.o
+ .debug_frame   0x00000000000000bc       0x74 build/main.o
+ .debug_frame   0x0000000000000130       0xe8 build/sprint.o
+ .debug_frame   0x0000000000000218       0xac build/os_hal_gpio.o
+ .debug_frame   0x00000000000002c4       0x7c build/os_hal_uart.o

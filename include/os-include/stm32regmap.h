@@ -99,26 +99,26 @@ _rw u32 ASCR ;
 
 
 typedef struct {
-  _rw u32 CR1 ; 
-  _rw u32 CR2 ; 
-  _rw u32 CR3 ; 
-  _rw u32 BRR ; 
-  _rw u16 GTPR ; 
+  _rw u32 CR1 ; /*< 00 */ 
+  _rw u32 CR2 ; /*< 04 */
+  _rw u32 CR3 ; /*< 08 */
+  _rw u32 BRR ; /*< 0C */
+  _rw u16 GTPR ; /*< 10 */
   u16 reserved2 ;  // 0x12 
-  _rw u32 RTOR ; 
-  _rw u16 RQR ;
+  _rw u32 RTOR ; /*< 14 */
+  _rw u16 RQR ; /*< 18 */
   u16 reserved3 ;  //0x1A
-  _rw u32 ISR  ;
-  _rw u32 ICR ; 
-  _r u16 RDR ; 
+  _rw u32 ISR  ; /*< 1C */
+  _rw u32 ICR ;  /*< 20 */
+  _r u16 RDR ;  /*< 24 */
   u16 reserved4 ;  //0x26
-  _rw u32 TDR ; 
-  u16 reserved5  ; // 0x2A
+  _rw u32 TDR ;  /*< 28 */
+  u16 reserved5  ; // 0x2A 2C
 }usart_t ; 
  
-
+/*< TODO: Update Memory Addresses */
 #define OS_USART_1 ((usart_t*) 0x000000D4) 
-#define OS_USART_2 ((usart_t*) 0x000000D8)
+#define OS_USART_2 ((usart_t*) 0x40004400)
 #define OS_USART_3 ((usart_t*) 0x000000DC) 
 
 
