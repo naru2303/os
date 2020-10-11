@@ -1,9 +1,8 @@
 #include <stdint.h>
-#include "include/stm32l4xx.h"
 #include "include/os-include/stm32regmap.h"
 #include "include/os-include/sprint.h"
 #include "include/os-include/bit.h"
-void initPeriph(void);
+#include "drivers/gpio/os_hal_gpio.h"
 void delay(uint32_t time);
 
 /**
@@ -19,34 +18,30 @@ void delay(uint32_t time)
     }
 }
 
-
-
 int main(void)
 {
-   // RCC->AHB2ENR = (1<<1); /*< Enable GPIOB Clock */
   // Clock for USART2 and GPIOB 
     OS_RCC->APB1ENR1 = bit(17) ; 
-    OS_RCC->AHB2ENR = bit(1) ; 
+    OS_RCC->AHB2ENR = bit(1)|bit(2); 
 
-    // Initialisation for Gpiob Led and Usart 
-    OS_PIOB->MODER = bit(14) ; 
-    OS_PIOB->ODR &= ~bit(7)  ; 
     //enable tx rx usart 
     OS_USART_2->CR1 = bit(0) | bit(2) | bit(3) ; 
     OS_USART_2->BRR = 36 ; 
- //TODO : Finish implementing USART
-
-   // GPIOB->MODER = (0x01 << 14); /*< Set PB7 as output */
-  //  GPIOB->ODR &= ~(1<<7); /*< Set PB7 to 0 */
-    while(1)
-    {
-
-        delay(500000);
-      //  GPIOB->ODR |= (1<<7);
-        OS_PIOB->ODR |= bit(7)  ; 
-        delay(500000);
-        OS_PIOB->ODR &= ~bit(7) ;
-        //GPIOB->ODR &= ~(1<<7);
-    }
     
+ //TODO : Finish implementing USART
+  Hal_Gpio_Init();
+  while(1)
+  {
+    if(Hal_Gpio_Read(GPIO_PORT_B, GPIO_PIN_7|GPIO_PIN_14) && Hal_Gpio_Read(GPIO_PORT_C, GPIO_PIN_7))
+    {
+      Hal_Gpio_Write(GPIO_PORT_B, GPIO_PIN_7|GPIO_PIN_14, GPIO_STATE_RESET);
+      Hal_Gpio_Write(GPIO_PORT_C, GPIO_PIN_7, GPIO_STATE_RESET);
+    }
+    else
+    {
+      Hal_Gpio_Write(GPIO_PORT_B, GPIO_PIN_7|GPIO_PIN_14, GPIO_STATE_SET);
+      Hal_Gpio_Write(GPIO_PORT_C, GPIO_PIN_7, GPIO_STATE_SET);
+    }
+    delay(500000);
+  }
 }

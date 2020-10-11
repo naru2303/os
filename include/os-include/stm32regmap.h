@@ -79,14 +79,23 @@ _w u32 BRR ;
 _rw u32 ASCR ; 
 }gpio_t; 
 
-#define OS_PIOA ((gpio_t*) 0x48000000UL) 
-#define OS_PIOB ((gpio_t*) 0x48000400UL)
-#define OS_PIOC ((gpio_t*) 0x48000800UL) 
-#define OS_PIOD ((gpio_t*) 0x48000C00UL)
-#define OS_PIOE ((gpio_t*) 0x48001000UL) 
-#define OS_PIOF ((gpio_t*) 0x48001400UL)
-#define OS_PIOG ((gpio_t*) 0x48001800UL) 
-#define OS_PIOH ((gpio_t*) 0x48001C00UL) 
+#define PIOA_BASE 0x48000000UL
+#define PIOB_BASE 0x48000400UL
+#define PIOC_BASE 0x48000800UL
+#define PIOD_BASE 0x48000C00UL
+#define PIOE_BASE 0x48001000UL
+#define PIOF_BASE 0x48001400UL
+#define PIOG_BASE 0x48001800UL
+#define PIOH_BASE 0x48001C00UL
+
+#define OS_PIOA ((gpio_t*) PIOA_BASE) 
+#define OS_PIOB ((gpio_t*) PIOB_BASE)
+#define OS_PIOC ((gpio_t*) PIOC_BASE) 
+#define OS_PIOD ((gpio_t*) PIOD_BASE)
+#define OS_PIOE ((gpio_t*) PIOE_BASE) 
+#define OS_PIOF ((gpio_t*) PIOF_BASE)
+#define OS_PIOG ((gpio_t*) PIOG_BASE) 
+#define OS_PIOH ((gpio_t*) PIOH_BASE) 
 
 
 typedef struct {

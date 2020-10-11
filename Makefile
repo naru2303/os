@@ -1,6 +1,6 @@
 # Source directories seperate by space
 # Ex: ./ src1/ src2
-SRCDIR = ./ arch/arm/stm32l496zg/ entry/ lib/ 
+SRCDIR = ./ arch/arm/stm32l496zg/ entry/ lib/ drivers/gpio/
 # Directory where object files will go
 OBJDIR = build/
 # Directory where binary files will go
@@ -24,9 +24,9 @@ OBJ = $(addprefix $(OBJDIR), $(patsubst %.c, %.o, $(notdir $(SRC))))
 VPATH = $(SRCDIR)
 
 # Compilation flags
-CFLAGS= -c -mcpu=$(MACH) -mthumb -std=gnu11 -Wall -o0
+CFLAGS= -c -mcpu=$(MACH) -mthumb -std=gnu11 -Wall -g -o0
 
-LDFLAGS= -nostdlib -T $(LINKDIR)/st_ls.ld -Wl,-Map=$(MAPDIR)/main.map
+LDFLAGS= -nostdlib -g -T $(LINKDIR)/st_ls.ld -Wl,-Map=$(MAPDIR)/main.map
 
 $(OBJDIR)%.o : %.c
 	@echo Compiling $< in $@...
