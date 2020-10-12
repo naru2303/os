@@ -117,9 +117,19 @@ typedef struct {
 }usart_t ; 
  
 /*< TODO: Update Memory Addresses */
-#define OS_USART_1 ((usart_t*) 0x000000D4) 
-#define OS_USART_2 ((usart_t*) 0x40004400)
-#define OS_USART_3 ((usart_t*) 0x000000DC) 
+#define USART1_BASE             0x40013800             
+#define USART2_BASE             0x40004400
+#define USART3_BASE             0x40008000
+#define UART4_BASE              0x40004C00
+#define UART5_BASE              0x40005000
+#define LPUART1_BASE           0x40008000
+
+#define OS_USART_1 ((usart_t*)  USART1_BASE) 
+#define OS_USART_2 ((usart_t*)  USART2_BASE)
+#define OS_USART_3 ((usart_t*)  USART3_BASE) 
+#define OS_UART_4 ((usart_t*)   UART4_BASE)
+#define OS_UART_5 ((usart_t*)   UART5_BASE)
+#define OS_LPUART_1 ((usart_t*) LPUART1_BASE)
 
 
 

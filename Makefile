@@ -1,6 +1,6 @@
 # Source directories seperate by space
 # Ex: ./ src1/ src2
-SRCDIR = ./ arch/arm/stm32l496zg/ entry/ lib/ drivers/gpio/ drivers/uart/
+SRCDIR = ./ arch/arm/stm32l496zg/ entry/ lib/ drivers/gpio/ drivers/uart/ drivers/clk/
 # Directory where object files will go
 OBJDIR = build/
 # Directory where binary files will go
