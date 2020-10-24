@@ -7,7 +7,7 @@
 #define _rw volatile 
 #define _w volatile 
 #define _r volatile const
-
+#define F_CPU (16000000UL)
 
 
 

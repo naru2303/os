@@ -9,7 +9,7 @@ BINDIR = build/
 MAPDIR = build/
 # Include directory
 INCDIR = ./ include/os-include/
-# Linker script directory
+# Linker script directoy
 LINKDIR = arch/arm/stm32l496zg
 # Name of output file
 TARGET = main.elf

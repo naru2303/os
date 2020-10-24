@@ -15,8 +15,8 @@ typedef enum
     LPUART1 = LPUART1_BASE
 }UsartNumber_t;
 
-void Hal_Usart_init();
-void Hal_Usart_PrintChar(uint8_t data);
-void Hal_Usart_PrintStr(char * str);
+void os_init_usart(u32 baudrate) ; 
+void os_init_print_char(uint8_t data);
+void os_init_print_string(char * str);
 
 #endif /*< OS_HAL_UART_H */

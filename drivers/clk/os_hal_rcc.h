@@ -89,7 +89,7 @@ typedef struct
 
 
 void Init_Sys_Clock(void);
-void Hal_Clocks_Init(void);
+void os_clocks_init(void);
 void RCC_AHB1ENR_ENABLE(uint32_t Peripherals);
 void RCC_AHB2ENR_ENABLE(uint32_t Peripherals);
 void RCC_AHB3ENR_ENABLE(uint32_t Peripherals);

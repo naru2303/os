@@ -72,7 +72,7 @@ void Init_Sys_Clock(void)
 /**
  *  @brief Initializes all clocks in the Registers_To_Configure array
  */
-void Hal_Clocks_Init(void)
+void os_clocks_init(void)
 {
     Init_Sys_Clock();
     uint8_t size = sizeof(Registers_To_Configure)/sizeof(RccRegConfig_t);

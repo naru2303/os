@@ -97,9 +97,9 @@ typedef struct
 }GpioConfig_t;
 
 /*< Function prototypes */
-void Gpio_Config(const GpioConfig_t * Config);
-void Hal_Gpio_Init(void);
-void Hal_Gpio_Write(GpioPortNumber_t Port, GpioPinNumber_t Pin, GpioPinState_t State);
-GpioPinState_t Hal_Gpio_Read(GpioPortNumber_t Port, GpioPinNumber_t);
+void os_gpio_config(const GpioConfig_t * Config);
+void os_gpio_init(void);
+void os_gpio_write(GpioPortNumber_t Port, GpioPinNumber_t Pin, GpioPinState_t State);
+GpioPinState_t os_gpio_read(GpioPortNumber_t Port, GpioPinNumber_t);
 
 #endif /**< OS_HAL_GPIO_H */

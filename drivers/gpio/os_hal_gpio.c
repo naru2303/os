@@ -15,7 +15,7 @@ const GpioConfig_t Pins_To_Configure[] = {
  *  @brief  Configures the given GPIO Config set-up
  *  @param  Pointer to the config set-up struct to configure
  */
-void Gpio_Config(const GpioConfig_t * Config)
+void os_gpio_config(const GpioConfig_t * Config)
 {
     gpio_t * GPIO = (gpio_t*)Config->Port;
     uint32_t Position = 0;
@@ -60,12 +60,12 @@ void Gpio_Config(const GpioConfig_t * Config)
 /**
 *   @brief Initializes all GPIO's in the Pins_To_Configure table
 */
-void Hal_Gpio_Init(void)
+void os_gpio_init(void)
 {
     uint8_t size = sizeof(Pins_To_Configure)/sizeof(GpioConfig_t);
     for(uint8_t index = 0; index < size; index++)
     {
-        Gpio_Config(&Pins_To_Configure[index]);
+        os_gpio_config(&Pins_To_Configure[index]);
     }
 }
 
@@ -75,7 +75,7 @@ void Hal_Gpio_Init(void)
  *  @param  Pin number of the targeted GPIO/GPIOs. GPIO_PIN_0..15
  *  @param  State of pin. GPIO_STATE_SET or GPIO_STATE_RESET
  */
-void Hal_Gpio_Write(GpioPortNumber_t Port, GpioPinNumber_t Pin, GpioPinState_t State)
+void os_gpio_write(GpioPortNumber_t Port, GpioPinNumber_t Pin, GpioPinState_t State)
 {
     gpio_t * GPIO = (gpio_t*)Port;
     if(State == GPIO_STATE_SET)
@@ -95,7 +95,7 @@ void Hal_Gpio_Write(GpioPortNumber_t Port, GpioPinNumber_t Pin, GpioPinState_t S
  *  
  *  @return GPIO_STATE_SET if 1, GPIO_STATE_RESET if 0
  */
-GpioPinState_t Hal_Gpio_Read(GpioPortNumber_t Port, GpioPinNumber_t Pin)
+GpioPinState_t os_gpio_read(GpioPortNumber_t Port, GpioPinNumber_t Pin)
 {
     gpio_t * GPIO = (gpio_t*)Port;
     GpioPinState_t State;

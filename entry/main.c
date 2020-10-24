@@ -5,9 +5,11 @@
 #include "drivers/gpio/os_hal_gpio.h"
 #include "drivers/uart/os_hal_uart.h"
 #include "drivers/clk/os_hal_rcc.h"
+#include "include/os-include/print.h"
+
 
 void delay(uint32_t time);
-void Init_Sys_Clock(void);
+
 /**
 *   @brief basic delay function
 *   @param time length of delay
@@ -23,23 +25,26 @@ void delay(uint32_t time)
 
 int main(void)
 {
-  Hal_Clocks_Init();/*< Enable all clocks */
-  Hal_Gpio_Init();  /*< Activate all GPIOs used */
-  Hal_Usart_init(); /*< TODO: Finish UART Hal */
+  os_clocks_init();/*< Enable all clocks */
+  os_gpio_init();  /*< Activate all GPIOs used */
+  os_init_usart(115200) ; 
+  OS_PIOA->AFR[0]  |= (7<<12) | (7<<8) ; // still no response from putty ..
+  
 
-  Hal_Usart_PrintStr("Hello, World!\r\n");
+  //print("Hello,World!\r\n") ; 
+os_init_print_string("Hello, World!\r\n");
   while(1)
   {
     
-    if(Hal_Gpio_Read(GPIO_PORT_B, GPIO_PIN_7|GPIO_PIN_14) && Hal_Gpio_Read(GPIO_PORT_C, GPIO_PIN_7))
+    if(os_gpio_read(GPIO_PORT_B, GPIO_PIN_7|GPIO_PIN_14) && os_gpio_read(GPIO_PORT_C, GPIO_PIN_7))
     {
-      Hal_Gpio_Write(GPIO_PORT_B, GPIO_PIN_7|GPIO_PIN_14, GPIO_STATE_RESET);
-      Hal_Gpio_Write(GPIO_PORT_C, GPIO_PIN_7, GPIO_STATE_RESET);
+      os_gpio_write(GPIO_PORT_B, GPIO_PIN_7|GPIO_PIN_14, GPIO_STATE_RESET);
+      os_gpio_write(GPIO_PORT_C, GPIO_PIN_7, GPIO_STATE_RESET);
     }
     else
     {
-      Hal_Gpio_Write(GPIO_PORT_B, GPIO_PIN_7|GPIO_PIN_14, GPIO_STATE_SET);
-      Hal_Gpio_Write(GPIO_PORT_C, GPIO_PIN_7, GPIO_STATE_SET);
+      os_gpio_write(GPIO_PORT_B, GPIO_PIN_7|GPIO_PIN_14, GPIO_STATE_SET);
+      os_gpio_write(GPIO_PORT_C, GPIO_PIN_7, GPIO_STATE_SET);
     }
     delay(500000);
   }
