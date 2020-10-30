@@ -8,9 +8,15 @@
 #define _w volatile 
 #define _r volatile const
 #define F_CPU (16000000UL)
+#define _nop() asm("NOP")
+#define _wfe() asm("WFE")
+#define _wfi() asm("WFI")
 
+typedef enum{
+  OS_OK , 
+  OS_ERROR 
 
-
+}os_state_t ;
 
 
 typedef struct{ 

@@ -88,12 +88,13 @@ typedef struct
 }RccRegConfig_t;
 
 
-void Init_Sys_Clock(void);
-void os_clocks_init(void);
-void RCC_AHB1ENR_ENABLE(uint32_t Peripherals);
-void RCC_AHB2ENR_ENABLE(uint32_t Peripherals);
-void RCC_AHB3ENR_ENABLE(uint32_t Peripherals);
-void RCC_APB1ENR1_ENABLE(uint32_t Peripherals);
-void RCC_APB1ENR2_ENABLE(uint32_t Peripherals);
-void RCC_APB2ENR_ENABLE(uint32_t Peripherals);
+os_state_t init_sys_clock_hsi(void);
+os_state_t init_sys_clock_hse(u8 mul, u8 div);
+os_state_t os_clocks_init(void);
+os_state_t RCC_AHB1ENR_ENABLE(uint32_t Peripherals);
+os_state_t RCC_AHB2ENR_ENABLE(uint32_t Peripherals);
+os_state_t RCC_AHB3ENR_ENABLE(uint32_t Peripherals);
+os_state_t RCC_APB1ENR1_ENABLE(uint32_t Peripherals);
+os_state_t RCC_APB1ENR2_ENABLE(uint32_t Peripherals);
+os_state_t RCC_APB2ENR_ENABLE(uint32_t Peripherals);
 #endif /*< OS_HAL_RCC_H */
