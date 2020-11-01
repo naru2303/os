@@ -7,16 +7,23 @@
 #define _rw volatile 
 #define _w volatile 
 #define _r volatile const
+
+
 #define F_CPU (16000000UL)
+
+
+//ASM COMMANDS 
 #define _nop() asm("NOP")
 #define _wfe() asm("WFE")
 #define _wfi() asm("WFI")
 
-typedef enum{
-  OS_OK , 
-  OS_ERROR 
 
-}os_state_t ;
+
+
+
+
+
+
 
 
 typedef struct{ 
@@ -93,6 +100,8 @@ _rw u32 ASCR ;
 #define PIOF_BASE 0x48001400UL
 #define PIOG_BASE 0x48001800UL
 #define PIOH_BASE 0x48001C00UL
+
+
 
 #define OS_PIOA ((gpio_t*) PIOA_BASE) 
 #define OS_PIOB ((gpio_t*) PIOB_BASE)

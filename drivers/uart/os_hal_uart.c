@@ -3,9 +3,19 @@
 
 
 
+
+
+
+
+
 /**
  *  @brief  UART Initalization
  */
+void os_init_usart_config(){
+
+
+
+ }
 void os_init_usart(u32 baudrate)
 {
     /*< PA2 = TX | PA3 = RX | Both activated in the GPIO Config Table */
@@ -16,7 +26,7 @@ void os_init_usart(u32 baudrate)
 /**
  *  @brief UART PrintChar
  */
-void os_init_print_char(uint8_t data)
+void os_init_print_char(u8 data)
 {
     OS_USART_2->TDR = data;
     while(!(OS_USART_2->ISR & (1<<6)));

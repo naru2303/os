@@ -1,8 +1,13 @@
 #ifndef OS_HAL_RCC_H
 #define OS_HAL_RCC_H
-#define OS_SYSTEM_CLOCK_HZ 16000000
+
 
 #include "include/os-include/stm32regmap.h"
+
+
+
+
+
 
 typedef enum
 {
@@ -88,13 +93,13 @@ typedef struct
 }RccRegConfig_t;
 
 
-os_state_t init_sys_clock_hsi(void);
-os_state_t init_sys_clock_hse(u8 mul, u8 div);
-os_state_t os_clocks_init(void);
-os_state_t RCC_AHB1ENR_ENABLE(uint32_t Peripherals);
-os_state_t RCC_AHB2ENR_ENABLE(uint32_t Peripherals);
-os_state_t RCC_AHB3ENR_ENABLE(uint32_t Peripherals);
-os_state_t RCC_APB1ENR1_ENABLE(uint32_t Peripherals);
-os_state_t RCC_APB1ENR2_ENABLE(uint32_t Peripherals);
-os_state_t RCC_APB2ENR_ENABLE(uint32_t Peripherals);
+void init_sys_clock_hsi(void);
+void init_sys_clock_hse(u8 mul, u8 div);
+void os_clocks_init(void);
+void RCC_AHB1ENR_ENABLE(uint32_t periph);
+void RCC_AHB2ENR_ENABLE(uint32_t periph);
+void RCC_AHB3ENR_ENABLE(uint32_t periph);
+void RCC_APB1ENR1_ENABLE(uint32_t periph);
+void RCC_APB1ENR2_ENABLE(uint32_t periph);
+void RCC_APB2ENR_ENABLE(uint32_t periph);
 #endif /*< OS_HAL_RCC_H */

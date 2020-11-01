@@ -69,6 +69,8 @@ void os_gpio_init(void)
     }
 }
 
+
+
 /**
  *  @brief  Sets/Resets the specified Pin or Pins
  *  @param  Port which the pin is located on. GPIO_PORT_A..H
