@@ -1,0 +1,313 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x0000000008000000 0x0000000000100000 xr
+SRAM             0x0000000020000000 0x0000000000050000 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD build/st_startup.o
+LOAD build/print.o
+LOAD build/main.o
+LOAD build/sprint.o
+LOAD build/os_hal_gpio.o
+LOAD build/os_hal_uart.o
+LOAD build/os_hal_rcc.o
+                0x0000000000000400                __max_heap_size = 0x400
+                0x0000000000000200                __max_stack_size = 0x200
+
+.text           0x0000000008000000      0xef0
+ *(.isr_vector)
+ .isr_vector    0x0000000008000000      0x1ac build/st_startup.o
+                0x0000000008000000                vectors
+ *(.text)
+ .text          0x00000000080001ac       0x8c build/st_startup.o
+                0x00000000080001ac                Reset_Handler
+                0x0000000008000230                EXTI2_IRQHandler
+                0x0000000008000230                TIM8_TRG_COM_IRQHandler
+                0x0000000008000230                TIM8_CC_IRQHandler
+                0x0000000008000230                SVCall_Handler
+                0x0000000008000230                DebugMon_Handler
+                0x0000000008000230                DMA1_CH4_IRQHandler
+                0x0000000008000230                TIM1_CC_IRQHandler
+                0x0000000008000230                TSC_IRQHandler
+                0x0000000008000230                HardFault_Handler
+                0x0000000008000230                SysTick_Handler
+                0x0000000008000230                TAMP_STAMP_IRQHandler
+                0x0000000008000230                PendSV_Handler
+                0x0000000008000230                NMI_Handler
+                0x0000000008000230                CAN2_RX1_IRQHandler
+                0x0000000008000230                EXTI3_IRQHandler
+                0x0000000008000230                LPTIM2_IRQHandler
+                0x0000000008000230                DFSDM1_FLT1_IRQHandler
+                0x0000000008000230                I2C3_ER_IRQHandler
+                0x0000000008000230                DFSDM1_FLT2_IRQHandler
+                0x0000000008000230                TIM6_DACUNDER_IRQHandler
+                0x0000000008000230                EXTI0_IRQHandler
+                0x0000000008000230                I2C2_EV_IRQHandler
+                0x0000000008000230                DMA2_CH1_IRQHandler
+                0x0000000008000230                CAN1_RX0_IRQHandler
+                0x0000000008000230                FPU_IRQHandler
+                0x0000000008000230                TIM1_UP_TIM16_IRQHandler
+                0x0000000008000230                DMA2_CH7_IRQHandler
+                0x0000000008000230                UsageFault_Handler
+                0x0000000008000230                CAN2_SCE_IRQHandler
+                0x0000000008000230                ADC1_2_IRQHandler
+                0x0000000008000230                SPI1_IRQHandler
+                0x0000000008000230                USART5_IRQHandler
+                0x0000000008000230                DMA1_CH7_IRQHandler
+                0x0000000008000230                DCMI_IRQHandler
+                0x0000000008000230                CAN2_RX0_IRQHandler
+                0x0000000008000230                TIM8_UP_IRQHandler
+                0x0000000008000230                RTC_ALARM_IRQHandler
+                0x0000000008000230                SAI2_IRQHandler
+                0x0000000008000230                DFSDM1_FLT3_IRQHandler
+                0x0000000008000230                DMA1_CH6_IRQHandler
+                0x0000000008000230                USART3_IRQHandler
+                0x0000000008000230                CAN1_RX1_IRQHandler
+                0x0000000008000230                LCD_IRQHandler
+                0x0000000008000230                ADC3_IRQHandler
+                0x0000000008000230                TIM4_IRQHandler
+                0x0000000008000230                QUADSPI_IRQHandler
+                0x0000000008000230                I2C1_EV_IRQHandler
+                0x0000000008000230                DMA2_CH5_IRQHandler
+                0x0000000008000230                USART4_IRQHandler
+                0x0000000008000230                DMA1_CH3_IRQHandler
+                0x0000000008000230                TIM3_IRQHandler
+                0x0000000008000230                RCC_IRQHandler
+                0x0000000008000230                Default_Handler
+                0x0000000008000230                EXTI15_10_IRQHandler
+                0x0000000008000230                TIM7_IRQHandler
+                0x0000000008000230                SDMMC1_IRQHandler
+                0x0000000008000230                CAN2_TX_IRQHandler
+                0x0000000008000230                TIM5_IRQHandler
+                0x0000000008000230                I2C3_EV_IRQHandler
+                0x0000000008000230                EXTI9_5_IRQHandler
+                0x0000000008000230                DMA1_CH2_IRQHandler
+                0x0000000008000230                RTC_WKUP_IRQHandler
+                0x0000000008000230                PVD_PVM_IRQHandler
+                0x0000000008000230                SPI2_IRQHandler
+                0x0000000008000230                DMA1_CH1_IRQHandler
+                0x0000000008000230                MemManage_Handler
+                0x0000000008000230                CAN1_TX_IRQHandler
+                0x0000000008000230                CRS_IRQHandler
+                0x0000000008000230                EXTI4_IRQHandler
+                0x0000000008000230                RNG_IRQHandler
+                0x0000000008000230                TIM1_TRG_COM_TIM17_IRQHandler
+                0x0000000008000230                COMP_IRQHandler
+                0x0000000008000230                WWDG_IRQHandler
+                0x0000000008000230                I2C4_EV_IRQHandler
+                0x0000000008000230                LPUART1_IRQHandler
+                0x0000000008000230                TIM2_IRQHandler
+                0x0000000008000230                DMA2D_IRQHandler
+                0x0000000008000230                EXTI1_IRQHandler
+                0x0000000008000230                AES_IRQHandler
+                0x0000000008000230                USART2_IRQHandler
+                0x0000000008000230                DFSDM1_FLT0_IRQHandler
+                0x0000000008000230                I2C2_ER_IRQHandler
+                0x0000000008000230                TIM8_BRK_IRQHandler
+                0x0000000008000230                CAN1_SCE_IRQHandler
+                0x0000000008000230                FLASH_IRQHandler
+                0x0000000008000230                BusFault_Handler
+                0x0000000008000230                USART1_IRQHandler
+                0x0000000008000230                OTG_FS_IRQHandler
+                0x0000000008000230                SPI3_IRQHandler
+                0x0000000008000230                DMA2_CH6_IRQHandler
+                0x0000000008000230                DMA2_CH3_IRQHandler
+                0x0000000008000230                DMA2_CH2_IRQHandler
+                0x0000000008000230                I2C1_ER_IRQHandler
+                0x0000000008000230                FMC_IRQHandler
+                0x0000000008000230                DMA1_CH5_IRQHandler
+                0x0000000008000230                DMA2_CH4_IRQHandler
+                0x0000000008000230                SWPMI1_IRQHandler
+                0x0000000008000230                LPTIM1_IRQHandler
+                0x0000000008000230                I2C4_ER_IRQHandler
+                0x0000000008000230                SAI1_IRQHandler
+                0x0000000008000230                TIM1_BRK_TIM15_IRQHandler
+ .text          0x0000000008000238       0x5c build/print.o
+                0x0000000008000238                print
+ .text          0x0000000008000294       0xb0 build/main.o
+                0x0000000008000294                delay
+                0x00000000080002b4                main
+ .text          0x0000000008000344      0x5f8 build/sprint.o
+                0x00000000080005a0                vsprint
+                0x0000000008000910                sprint
+ .text          0x000000000800093c      0x1cc build/os_hal_gpio.o
+                0x000000000800093c                os_gpio_config
+                0x0000000008000a56                os_gpio_init
+                0x0000000008000a94                os_gpio_write
+                0x0000000008000ad4                os_gpio_read
+ .text          0x0000000008000b08      0x11c build/os_hal_uart.o
+                0x0000000008000b08                usart_state_init
+                0x0000000008000b2c                os_init_usart_config
+                0x0000000008000b38                os_init_usart
+                0x0000000008000b6c                os_init_print_char
+                0x0000000008000b98                os_init_print_string
+                0x0000000008000bc0                os_receive_frame
+ .text          0x0000000008000c24      0x258 build/os_hal_rcc.o
+                0x0000000008000c24                RCC_AHB1ENR_ENABLE
+                0x0000000008000c48                RCC_AHB2ENR_ENABLE
+                0x0000000008000c6c                RCC_AHB3ENR_ENABLE
+                0x0000000008000c90                RCC_APB1ENR1_ENABLE
+                0x0000000008000cb4                RCC_APB1ENR2_ENABLE
+                0x0000000008000cd8                RCC_APB2ENR_ENABLE
+                0x0000000008000cfc                init_sys_clock_hsi
+                0x0000000008000d50                init_sys_clock_hse
+                0x0000000008000db4                os_clocks_init
+ *(.rodata)
+ .rodata        0x0000000008000e7c       0x10 build/main.o
+ .rodata        0x0000000008000e8c       0x17 build/sprint.o
+ *fill*         0x0000000008000ea3        0x1 
+ .rodata        0x0000000008000ea4       0x3c build/os_hal_gpio.o
+                0x0000000008000ea4                Pins_To_Configure
+ .rodata        0x0000000008000ee0       0x10 build/os_hal_rcc.o
+                0x0000000008000ee0                Registers_To_Configure
+                0x0000000008000ef0                . = ALIGN (0x8)
+                0x0000000008000ef0                _etext = .
+
+.glue_7         0x0000000008000ef0        0x0
+ .glue_7        0x0000000008000ef0        0x0 linker stubs
+
+.glue_7t        0x0000000008000ef0        0x0
+ .glue_7t       0x0000000008000ef0        0x0 linker stubs
+
+.vfp11_veneer   0x0000000008000ef0        0x0
+ .vfp11_veneer  0x0000000008000ef0        0x0 linker stubs
+
+.v4_bx          0x0000000008000ef0        0x0
+ .v4_bx         0x0000000008000ef0        0x0 linker stubs
+
+.iplt           0x0000000008000ef0        0x0
+ .iplt          0x0000000008000ef0        0x0 build/st_startup.o
+
+.rel.dyn        0x0000000008000ef0        0x0
+ .rel.iplt      0x0000000008000ef0        0x0 build/st_startup.o
+
+.data           0x0000000020000000        0x0 load address 0x0000000008000ef0
+                0x0000000020000000                _sdata = .
+ *(.data)
+ .data          0x0000000020000000        0x0 build/st_startup.o
+ .data          0x0000000020000000        0x0 build/print.o
+ .data          0x0000000020000000        0x0 build/main.o
+ .data          0x0000000020000000        0x0 build/sprint.o
+ .data          0x0000000020000000        0x0 build/os_hal_gpio.o
+ .data          0x0000000020000000        0x0 build/os_hal_uart.o
+ .data          0x0000000020000000        0x0 build/os_hal_rcc.o
+                0x0000000020000000                . = ALIGN (0x8)
+                0x0000000020000000                _edata = .
+
+.igot.plt       0x0000000020000000        0x0 load address 0x0000000008000ef0
+ .igot.plt      0x0000000020000000        0x0 build/st_startup.o
+
+.bss            0x0000000020000000       0x80 load address 0x0000000008000ef0
+                0x0000000020000000                _sbss = .
+ *(.bss)
+ .bss           0x0000000020000000        0x0 build/st_startup.o
+ .bss           0x0000000020000000       0x80 build/print.o
+ .bss           0x0000000020000080        0x0 build/main.o
+ .bss           0x0000000020000080        0x0 build/sprint.o
+ .bss           0x0000000020000080        0x0 build/os_hal_gpio.o
+ .bss           0x0000000020000080        0x0 build/os_hal_uart.o
+ .bss           0x0000000020000080        0x0 build/os_hal_rcc.o
+ *(COMMON)
+                0x0000000020000080                . = ALIGN (0x8)
+                0x0000000020000080                _ebss = .
+OUTPUT(build/main.elf elf32-littlearm)
+LOAD linker stubs
+
+.debug_info     0x0000000000000000     0x18ff
+ .debug_info    0x0000000000000000      0x14b build/st_startup.o
+ .debug_info    0x000000000000014b      0x274 build/print.o
+ .debug_info    0x00000000000003bf      0x27e build/main.o
+ .debug_info    0x000000000000063d      0x373 build/sprint.o
+ .debug_info    0x00000000000009b0      0x55a build/os_hal_gpio.o
+ .debug_info    0x0000000000000f0a      0x38d build/os_hal_uart.o
+ .debug_info    0x0000000000001297      0x668 build/os_hal_rcc.o
+
+.debug_abbrev   0x0000000000000000      0x8be
+ .debug_abbrev  0x0000000000000000       0xd2 build/st_startup.o
+ .debug_abbrev  0x00000000000000d2      0x108 build/print.o
+ .debug_abbrev  0x00000000000001da      0x10e build/main.o
+ .debug_abbrev  0x00000000000002e8      0x142 build/sprint.o
+ .debug_abbrev  0x000000000000042a      0x186 build/os_hal_gpio.o
+ .debug_abbrev  0x00000000000005b0      0x172 build/os_hal_uart.o
+ .debug_abbrev  0x0000000000000722      0x19c build/os_hal_rcc.o
+
+.debug_aranges  0x0000000000000000       0xe0
+ .debug_aranges
+                0x0000000000000000       0x20 build/st_startup.o
+ .debug_aranges
+                0x0000000000000020       0x20 build/print.o
+ .debug_aranges
+                0x0000000000000040       0x20 build/main.o
+ .debug_aranges
+                0x0000000000000060       0x20 build/sprint.o
+ .debug_aranges
+                0x0000000000000080       0x20 build/os_hal_gpio.o
+ .debug_aranges
+                0x00000000000000a0       0x20 build/os_hal_uart.o
+ .debug_aranges
+                0x00000000000000c0       0x20 build/os_hal_rcc.o
+
+.debug_line     0x0000000000000000      0xac2
+ .debug_line    0x0000000000000000       0xfc build/st_startup.o
+ .debug_line    0x00000000000000fc       0xfb build/print.o
+ .debug_line    0x00000000000001f7      0x101 build/main.o
+ .debug_line    0x00000000000002f8      0x2e3 build/sprint.o
+ .debug_line    0x00000000000005db      0x1c4 build/os_hal_gpio.o
+ .debug_line    0x000000000000079f      0x173 build/os_hal_uart.o
+ .debug_line    0x0000000000000912      0x1b0 build/os_hal_rcc.o
+
+.debug_str      0x0000000000000000      0xd3a
+ .debug_str     0x0000000000000000      0x191 build/st_startup.o
+                                        0x1ca (size before relaxing)
+ .debug_str     0x0000000000000191       0x96 build/print.o
+                                        0x20c (size before relaxing)
+ .debug_str     0x0000000000000227      0x184 build/main.o
+                                        0x2e7 (size before relaxing)
+ .debug_str     0x00000000000003ab       0x6c build/sprint.o
+                                        0x221 (size before relaxing)
+ .debug_str     0x0000000000000417      0x265 build/os_hal_gpio.o
+                                        0x535 (size before relaxing)
+ .debug_str     0x000000000000067c      0x199 build/os_hal_uart.o
+                                        0x352 (size before relaxing)
+ .debug_str     0x0000000000000815      0x525 build/os_hal_rcc.o
+                                        0x6b6 (size before relaxing)
+
+.comment        0x0000000000000000       0x4e
+ .comment       0x0000000000000000       0x4e build/st_startup.o
+                                         0x4f (size before relaxing)
+ .comment       0x000000000000004e       0x4f build/print.o
+ .comment       0x000000000000004e       0x4f build/main.o
+ .comment       0x000000000000004e       0x4f build/sprint.o
+ .comment       0x000000000000004e       0x4f build/os_hal_gpio.o
+ .comment       0x000000000000004e       0x4f build/os_hal_uart.o
+ .comment       0x000000000000004e       0x4f build/os_hal_rcc.o
+
+.ARM.attributes
+                0x0000000000000000       0x2e
+ .ARM.attributes
+                0x0000000000000000       0x2e build/st_startup.o
+ .ARM.attributes
+                0x000000000000002e       0x2e build/print.o
+ .ARM.attributes
+                0x000000000000005c       0x2e build/main.o
+ .ARM.attributes
+                0x000000000000008a       0x2e build/sprint.o
+ .ARM.attributes
+                0x00000000000000b8       0x2e build/os_hal_gpio.o
+ .ARM.attributes
+                0x00000000000000e6       0x2e build/os_hal_uart.o
+ .ARM.attributes
+                0x0000000000000114       0x2e build/os_hal_rcc.o
+
+.debug_frame    0x0000000000000000      0x4e0
+ .debug_frame   0x0000000000000000       0x4c build/st_startup.o
+ .debug_frame   0x000000000000004c       0x4c build/print.o
+ .debug_frame   0x0000000000000098       0x54 build/main.o
+ .debug_frame   0x00000000000000ec       0xe8 build/sprint.o
+ .debug_frame   0x00000000000001d4       0xac build/os_hal_gpio.o
+ .debug_frame   0x0000000000000280       0xf4 build/os_hal_uart.o
+ .debug_frame   0x0000000000000374      0x16c build/os_hal_rcc.o

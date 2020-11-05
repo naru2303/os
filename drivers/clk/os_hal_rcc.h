@@ -5,6 +5,10 @@
 #include "include/os-include/stm32regmap.h"
 
 
+//TODO Implement Error Codes 
+//Implement RCC State Code 
+
+
 
 
 
@@ -93,6 +97,9 @@ typedef struct
 }RccRegConfig_t;
 
 
+
+// Add Error Codes and RCC state to the 
+// Fonctions 
 void init_sys_clock_hsi(void);
 void init_sys_clock_hse(u8 mul, u8 div);
 void os_clocks_init(void);
